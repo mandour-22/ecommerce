@@ -1,0 +1,12 @@
+.notFound {
+  text-align: center;
+  height: 100vh;
+  display: grid;
+  place-content: center;
+}
+.notFound h1 {
+  font-size: 130px;
+}
+.notFound p {
+  font-size: 50px;
+}
