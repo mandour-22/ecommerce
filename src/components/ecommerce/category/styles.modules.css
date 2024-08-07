@@ -1,20 +1,34 @@
 .category {
   width: 180px;
-  height: 180px;
+  height: 100%;
 }
 
 .categoryImg {
   overflow: hidden;
   border-radius: 10px;
   background-color: #0d6efd;
+  width: 200px;
+  height: 200px;
+  margin-inline: auto;
 }
 
 .categoryImg img {
   width: 100%;
+  border: 1px solid #b4b2b2;
+  border-radius: 10px;
+}
+
+.link {
+  text-decoration: none;
 }
 
 .categoryTitle {
   text-align: center;
-  font-size: 14px;
+  font-size: 16px;
   margin-top: 10px;
+  color: black;
+  /* text-decoration: none; */
+  &:hover {
+    text-decoration: underline;
+  }
 }

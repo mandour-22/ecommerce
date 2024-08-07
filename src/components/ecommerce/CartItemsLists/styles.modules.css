@@ -1,0 +1,11 @@
+.cart_items {
+  width: 60%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+@media (max-width: 991px) {
+  .cart_items {
+    width: 100%;
+    overflow-x: auto;
+  }
+}

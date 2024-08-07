@@ -1,68 +1,21 @@
-import { Container, Row, Col } from "react-bootstrap";
+import useProducts from "@hooks/useProducts";
+import { Container } from "react-bootstrap";
 import { Products } from "@components/ecommerce";
+import { Loading } from "@components/feadback";
+import { GridList, Heading } from "@components/common";
 
 const Product = () => {
+  const { loading, error, productsFullInfo, paramsPrefix } = useProducts();
   return (
     <Container>
-      <Row>
-        <Col xs={3} className="d-flex justify-content-center mb-5 mt-5">
-          <Products />
-        </Col>
-        <Col xs={3} className="d-flex justify-content-center mb-5 mt-5">
-          <Products />
-        </Col>
-        <Col xs={3} className="d-flex justify-content-center mb-5 mt-5">
-          <Products />
-        </Col>
-        <Col xs={3} className="d-flex justify-content-center mb-5 mt-5">
-          <Products />
-        </Col>
-        <Col xs={3} className="d-flex justify-content-center mb-5 mt-5">
-          <Products />
-        </Col>
-        <Col xs={3} className="d-flex justify-content-center mb-5 mt-5">
-          <Products />
-        </Col>
-        <Col xs={3} className="d-flex justify-content-center mb-5 mt-5">
-          <Products />
-        </Col>
-        <Col xs={3} className="d-flex justify-content-center mb-5 mt-5">
-          <Products />
-        </Col>
-        <Col xs={3} className="d-flex justify-content-center mb-5 mt-5">
-          <Products />
-        </Col>
-        <Col xs={3} className="d-flex justify-content-center mb-5 mt-5">
-          <Products />
-        </Col>
-        <Col xs={3} className="d-flex justify-content-center mb-5 mt-5">
-          <Products />
-        </Col>
-        <Col xs={3} className="d-flex justify-content-center mb-5 mt-5">
-          <Products />
-        </Col>
-        <Col xs={3} className="d-flex justify-content-center mb-5 mt-5">
-          <Products />
-        </Col>
-        <Col xs={3} className="d-flex justify-content-center mb-5 mt-5">
-          <Products />
-        </Col>
-        <Col xs={3} className="d-flex justify-content-center mb-5 mt-5">
-          <Products />
-        </Col>
-        <Col xs={3} className="d-flex justify-content-center mb-5 mt-5">
-          <Products />
-        </Col>
-        <Col xs={3} className="d-flex justify-content-center mb-5 mt-5">
-          <Products />
-        </Col>
-        <Col xs={3} className="d-flex justify-content-center mb-5 mt-5">
-          <Products />
-        </Col>
-        <Col xs={3} className="d-flex justify-content-center mb-5 mt-5">
-          <Products />
-        </Col>
-      </Row>
+      <Heading title={`${paramsPrefix} Products`} />
+      <Loading status={loading} error={error} type="product">
+        <GridList
+          emptyMessage="There are no Products"
+          records={productsFullInfo}
+          retrunItems={(record) => <Products {...record} />}
+        />
+      </Loading>
     </Container>
   );
 };

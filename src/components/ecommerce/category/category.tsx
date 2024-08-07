@@ -1,15 +1,16 @@
+import { TCategories } from "@types";
+import { Link } from "react-router-dom";
 import "./styles.modules.css";
 
-const category = () => {
+const category = ({ title, img, prefix }: TCategories) => {
   return (
     <div className="category w-100">
-      <div className="categoryImg">
-        <img
-          src="https://platinumlist.net/guide/wp-content/uploads/2023/03/IMG-worlds-of-adventure-1536x864.webp"
-          alt="category"
-        />
-      </div>
-      <h4 className="categoryTitle">Title</h4>
+      <Link to={`/categories/product/${prefix}`} className="link">
+        <div className="categoryImg ">
+          <img src={img} alt={title} />
+        </div>
+        <h4 className="categoryTitle">{title}</h4>
+      </Link>
     </div>
   );
 };

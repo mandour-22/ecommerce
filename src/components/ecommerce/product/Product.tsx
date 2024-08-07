@@ -1,20 +1,90 @@
 import "./styles.modules.css";
-import { Button } from "react-bootstrap";
-import Imgs from "../../../../mandour-3-modified.png";
+import { useState, useEffect, memo } from "react";
+import { useAppDispatch } from "@store/Hooks";
+import { Button, Spinner } from "react-bootstrap";
+import Like from "@assets/svg/like.svg?react";
+import { ActWishList } from "@store/wishlist/wishlistSlice";
+import LikeFullFill from "@assets/svg/like_fill.svg?react";
+import { TProducts } from "@types";
+import { addToCart } from "@store/Cart/CartSlice";
 
-const Products = () => {
-  return (
-    <div className="product w-100">
-      <div className="productImg">
-        <img src={Imgs} alt="" />
+const Products = memo(
+  ({ id, title, price, img, quantity, max, isLiked }: TProducts) => {
+    const dispatch = useAppDispatch();
+    const [loading, setLoading] = useState(false);
+    const [isDisabled, setIsDisabled] = useState(false);
+
+    const addToCartHandler = () => {
+      dispatch(addToCart(id));
+      setIsDisabled(true);
+    };
+
+    useEffect(() => {
+      if (!isDisabled) {
+        return;
+      }
+
+      const disable = setTimeout(() => setIsDisabled(false), 300);
+
+      return () => clearTimeout(disable);
+    }, [isDisabled]);
+
+    const currentReminingQuantity = max - (quantity ?? 0);
+    const quantityReachedToMax = currentReminingQuantity <= 0 ? true : false;
+
+    const likeToggleHandler = () => {
+      if (loading) return;
+      setLoading(true);
+      dispatch(ActWishList(id))
+        .unwrap()
+        .then(() => setLoading(false))
+        .catch(() => setLoading(false));
+    };
+
+    return (
+      <div className="product w-100">
+        <div className="productLike" onClick={likeToggleHandler}>
+          {loading ? (
+            <Spinner size="sm" animation="border" variant="danger" />
+          ) : isLiked ? (
+            <LikeFullFill />
+          ) : (
+            <Like />
+          )}
+        </div>
+        <div className="productImg">
+          <img src={img} alt="" />
+        </div>
+        <h2>{title}</h2>
+        <h3>{price.toFixed(2)} EGP</h3>
+        <p>
+          {quantityReachedToMax
+            ? "You Reach to the Limit"
+            : `You Can Add ${currentReminingQuantity} Items`}
+        </p>
+        <Button
+          className="btns"
+          variant="primary"
+          style={{ color: "white", fontWeight: "bold" }}
+          onClick={addToCartHandler}
+          disabled={isDisabled || quantityReachedToMax}>
+          {isDisabled ? (
+            <>
+              <Spinner
+                animation="border"
+                role="status"
+                size="sm"
+                style={{ marginInline: "5px" }}
+              />
+              <span>Looding...</span>
+            </>
+          ) : (
+            "Add To Cart"
+          )}
+        </Button>
       </div>
-      <h2>Title</h2>
-      <h3>10 EGP</h3>
-      <Button variant="primary" style={{ color: "white", fontWeight: "bold" }}>
-        Add To Cart
-      </Button>
-    </div>
-  );
-};
+    );
+  }
+);
 
 export default Products;

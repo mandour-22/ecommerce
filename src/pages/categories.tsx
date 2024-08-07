@@ -1,59 +1,21 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { GridList, Heading } from "@components/common";
+import { Container } from "react-bootstrap";
 import { Category } from "@components/ecommerce";
+import { Loading } from "@components/feadback";
+import useCategories from "@hooks/useCategories";
 
 const Categories = () => {
+  const { error, loading, records } = useCategories();
   return (
     <Container>
-      <Row>
-        <Col sm={12} md={3} className="d-flex justify-centent-center mb-5 mt-2">
-          <Category />
-        </Col>
-        <Col sm={12} md={3} className="d-flex justify-centent-center mb-5 mt-2">
-          <Category />
-        </Col>
-        <Col sm={12} md={3} className="d-flex justify-centent-center mb-5 mt-2">
-          <Category />
-        </Col>
-        <Col sm={12} md={3} className="d-flex justify-centent-center mb-5 mt-2">
-          <Category />
-        </Col>
-        <Col sm={12} md={3} className="d-flex justify-centent-center mb-5 mt-2">
-          <Category />
-        </Col>
-        <Col sm={12} md={3} className="d-flex justify-centent-center mb-5 mt-2">
-          <Category />
-        </Col>
-        <Col sm={12} md={3} className="d-flex justify-centent-center mb-5 mt-2">
-          <Category />
-        </Col>
-        <Col sm={12} md={3} className="d-flex justify-centent-center mb-5 mt-2">
-          <Category />
-        </Col>
-        <Col sm={12} md={3} className="d-flex justify-centent-center mb-5 mt-2">
-          <Category />
-        </Col>
-        <Col sm={12} md={3} className="d-flex justify-centent-center mb-5 mt-2">
-          <Category />
-        </Col>
-        <Col sm={12} md={3} className="d-flex justify-centent-center mb-5 mt-2">
-          <Category />
-        </Col>
-        <Col sm={12} md={3} className="d-flex justify-centent-center mb-5 mt-2">
-          <Category />
-        </Col>
-        <Col sm={12} md={3} className="d-flex justify-centent-center mb-5 mt-2">
-          <Category />
-        </Col>
-        <Col sm={12} md={3} className="d-flex justify-centent-center mb-5 mt-2">
-          <Category />
-        </Col>
-        <Col sm={12} md={3} className="d-flex justify-centent-center mb-5 mt-2">
-          <Category />
-        </Col>
-        <Col sm={12} md={3} className="d-flex justify-centent-center mb-5 mt-2">
-          <Category />
-        </Col>
-      </Row>
+      <Heading title="Category" />
+      <Loading status={loading} error={error} type="category">
+        <GridList
+          emptyMessage="There are to Categories"
+          records={records}
+          retrunItems={(record) => <Category {...record} />}
+        />
+      </Loading>
     </Container>
   );
 };
