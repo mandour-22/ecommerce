@@ -1,20 +1,5 @@
 {
-  "users": [
-    {
-      "email": "omar@gmail.com",
-      "password": "$2a$10$nuBnpfF2bAKSFBzID2m9e.qyR/rqllNQ8O5MJcL.tctjXaD0llBtu",
-      "firstName": "Omar",
-      "lastName": "Hassan",
-      "id": 1
-    },
-    {
-      "email": "ahmed@gmail.com",
-      "password": "$2a$10$gB2WLtKwGrlVCTQ3T67SP.bQWwZplV6kbZ5jHTeN1TSctEp4K9lG2",
-      "firstName": "Ahmed",
-      "lastName": "hasssan",
-      "id": 2
-    }
-  ],
+  "users": [],
   "categories": [
     {
       "id": 1,
@@ -116,21 +101,6 @@
   "wishlist": [
     {
       "userId": 1,
-      "productId": 5,
-      "id": 1
-    },
-    {
-      "userId": 1,
-      "productId": 4,
-      "id": 2
-    },
-    {
-      "userId": 1,
-      "productId": 6,
-      "id": 3
-    },
-    {
-      "userId": 1,
       "productId": 2,
       "id": 4
     },
@@ -138,11 +108,6 @@
       "userId": 1,
       "productId": 1,
       "id": 5
-    },
-    {
-      "userId": 1,
-      "productId": 3,
-      "id": 6
     }
   ]
 }

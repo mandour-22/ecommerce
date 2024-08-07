@@ -1,68 +1,21 @@
-import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "@store/Hooks";
-import { actAuthRegister, resetUI } from "@store/auth/authSlice";
-import { useForm, SubmitHandler } from "react-hook-form";
-import useCheckEmailAvailabilty from "@hooks/useCheckEmailAvailabilty";
-import { schema, Inputs } from "@validation/signUpSchema";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { Navigate } from "react-router-dom";
 import { Input } from "@components/form/index";
 import { Button, Form, Row, Col, Spinner } from "react-bootstrap";
 import { Heading } from "@components/common";
-import { useNavigate, Navigate } from "react-router-dom";
+import useRegister from "@hooks/useRegister";
 
 const Register = () => {
-  const dispatch = useAppDispatch();
-  const { loading, error, accessToken } = useAppSelector((state) => state.auth);
-  const navigate = useNavigate();
-
-  // React Hook Form
   const {
+    loading,
+    error,
+    accessToken,
     register,
     handleSubmit,
-    getFieldState,
-    trigger,
-    formState: { errors },
-  } = useForm<Inputs>({
-    mode: "onBlur",
-    resolver: zodResolver(schema),
-  });
-
-  const {
+    errorForm,
     emailAvailabiltyStatus,
-    enterEmail,
-    checkEmailAvailability,
-    restEmailAvailabilaty,
-  } = useCheckEmailAvailabilty();
-
-  // handler submit
-  const submits: SubmitHandler<Inputs> = async (data) => {
-    const { firstName, lastName, email, password } = data;
-    dispatch(actAuthRegister({ firstName, lastName, email, password }))
-      .unwrap()
-      .then(() => {
-        navigate("/login?message=account_created");
-      });
-
-    console.log(data);
-  };
-
-  const emailOnBlurHandler = async (e: React.FocusEvent<HTMLInputElement>) => {
-    await trigger("email");
-    const value = e.target.value;
-    const { isDirty, invalid } = getFieldState("email");
-    if (isDirty && !invalid && enterEmail !== value) {
-      checkEmailAvailability(value);
-    }
-    if (isDirty && invalid && enterEmail && value.length === 0) {
-      restEmailAvailabilaty();
-    }
-  };
-
-  useEffect(() => {
-    return () => {
-      dispatch(resetUI());
-    };
-  }, [dispatch]);
+    submits,
+    emailOnBlurHandler,
+  } = useRegister();
 
   if (accessToken) {
     return <Navigate to={"/"} />;
@@ -79,14 +32,14 @@ const Register = () => {
               register={register}
               name={"firstName"}
               label="Frist Name"
-              error={errors.firstName?.message}
+              error={errorForm.firstName?.message}
             />
             <Input
               type="text"
               register={register}
               name={"lastName"}
               label="last Name"
-              error={errors.lastName?.message}
+              error={errorForm.lastName?.message}
             />
             <Input
               type="text"
@@ -94,8 +47,8 @@ const Register = () => {
               name={"email"}
               label="Email Address"
               error={
-                errors.email?.message
-                  ? errors.email?.message
+                errorForm.email?.message
+                  ? errorForm.email?.message
                   : emailAvailabiltyStatus === "notAvailable"
                   ? "This email is already in used"
                   : emailAvailabiltyStatus === "failed"
@@ -119,14 +72,14 @@ const Register = () => {
               register={register}
               name={"password"}
               label="Password"
-              error={errors.password?.message}
+              error={errorForm.password?.message}
             />
             <Input
               type="password"
               register={register}
               name={"confirmPassword"}
               label="Confirm Password"
-              error={errors.confirmPassword?.message}
+              error={errorForm.confirmPassword?.message}
             />
 
             <Button

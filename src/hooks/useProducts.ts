@@ -11,11 +11,13 @@ const useProducts = () => {
   const { error, loading, records } = useAppSelector((state) => state.Products);
   const cartItems = useAppSelector((state) => state.Cart.items);
   const wishListItemsId = useAppSelector((state) => state.wishlist.itemsId);
+  const userAccessToken = useAppSelector((state) => state.auth.accessToken);
   const paramsPrefix = param.prefix;
   const productsFullInfo = records.map((el) => ({
     ...el,
     quantity: cartItems[el.id] || 0,
     isLiked: wishListItemsId.includes(el.id),
+    isAuthenticated: userAccessToken ? true : false,
   }));
 
   useEffect(() => {
