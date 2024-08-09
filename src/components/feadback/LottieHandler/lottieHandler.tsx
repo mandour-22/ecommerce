@@ -3,12 +3,16 @@ import notFound from "@assets/LottieFiles/notFound.json";
 import loading from "@assets/LottieFiles/cart_loading.json";
 import empty from "@assets/LottieFiles/empty_cart.json";
 import error from "@assets/LottieFiles/error.json";
+import success from "@assets/LottieFiles/success.json";
+import cartEmtyLogin from "@assets/LottieFiles/cartEmptyLogin.json";
 
 const lottieFileMap = {
   notFound: notFound,
   loading: loading,
   empty: empty,
   error1: error,
+  success: success,
+  cartEmptyLogin: cartEmtyLogin,
 };
 
 type TLottie = {
@@ -23,7 +27,7 @@ const lottieHandler = ({ type, message }: TLottie) => {
       <Lottie
         animationData={lottie}
         loop={true}
-        style={{ width: "400px", marginInline: "auto" }}
+        style={{ width: "300px", marginInline: "auto" }}
       />
       {message && <h3 className="text-center">{message}</h3>}
     </>

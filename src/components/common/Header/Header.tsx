@@ -56,8 +56,12 @@ const Header = () => {
                   id="nav-dropdown-dark-example"
                   title={`Welcome: ${user?.firstName} ${user?.lastName}`}
                   menuVariant="dark">
-                  <NavDropdown.Item>Profile</NavDropdown.Item>
-                  <NavDropdown.Item>Order</NavDropdown.Item>
+                  <NavDropdown.Item as={NavLink} to={"profile"} end>
+                    Profile
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={NavLink} to={"profile/orders"}>
+                    Order
+                  </NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item
                     className="fw-semibold"

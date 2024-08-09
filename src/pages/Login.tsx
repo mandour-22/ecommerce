@@ -1,4 +1,4 @@
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import useLogin from "@hooks/useLogin";
 import { Input } from "@components/form";
 import { Button, Form, Row, Col, Alert, Spinner } from "react-bootstrap";
@@ -64,6 +64,11 @@ const Login = () => {
                 "Submit"
               )}
             </Button>
+
+            <p className="mt-3  text-capitalize">
+              create account <Link to={"/register"}>signUp</Link>
+            </p>
+
             {error && (
               <p style={{ color: "#DC3545", marginTop: "10px" }}>{error}</p>
             )}

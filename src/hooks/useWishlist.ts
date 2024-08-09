@@ -21,6 +21,7 @@ const useWishlist = () => {
     (state) => state.wishlist
   );
   const cartItems = useAppSelector((state) => state.Cart.items);
+  const accessTokens = useAppSelector((state) => state.auth.accessToken);
 
   const records = productFullInfo.map((el) => ({
     ...el,
@@ -28,7 +29,7 @@ const useWishlist = () => {
     isLiked: true,
     isAuthenticated: true,
   }));
-  return { loading, error, records };
+  return { loading, error, records, accessTokens };
 };
 
 export default useWishlist;

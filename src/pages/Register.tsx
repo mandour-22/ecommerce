@@ -83,7 +83,7 @@ const Register = () => {
             />
 
             <Button
-              variant="info"
+              variant="primary"
               type="submit"
               style={{ color: "white" }}
               disabled={

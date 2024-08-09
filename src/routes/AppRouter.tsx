@@ -5,6 +5,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { PageSuspenseFallback } from "@components/feadback";
 
 const MainLayout = lazy(() => import("../Layouts/MainLayout/MainLayout"));
+const ProfileLayout = lazy(
+  () => import("../Layouts/ProfileLayouts/ProfileLayouts")
+);
+
 const About = lazy(() => import("@pages/about"));
 const Categories = lazy(() => import("@pages/categories"));
 const Home = lazy(() => import("@pages/home"));
@@ -13,7 +17,8 @@ const Product = lazy(() => import("@pages/product"));
 const Login = lazy(() => import("@pages/Login"));
 const Register = lazy(() => import("@pages/Register"));
 const WishLists = lazy(() => import("@pages/WishList"));
-const Profile = lazy(() => import("@pages/Profile"));
+const Account = lazy(() => import("@pages/Account"));
+const Orders = lazy(() => import("@pages/Order"));
 
 import ProtectedRoute from "@components/Auth/ProtectedRoute";
 
@@ -77,16 +82,6 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "profile",
-        element: (
-          <PageSuspenseFallback>
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          </PageSuspenseFallback>
-        ),
-      },
-      {
         path: "categories/product/:prefix",
         element: <Product />,
         loader: ({ params }) => {
@@ -104,6 +99,34 @@ const router = createBrowserRouter([
       },
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
+      {
+        path: "profile",
+        element: (
+          <PageSuspenseFallback>
+            <ProtectedRoute>
+              <ProfileLayout />
+            </ProtectedRoute>
+          </PageSuspenseFallback>
+        ),
+        children: [
+          {
+            index: true,
+            element: (
+              <PageSuspenseFallback>
+                <Account />
+              </PageSuspenseFallback>
+            ),
+          },
+          {
+            path: "orders",
+            element: (
+              <PageSuspenseFallback>
+                <Orders />
+              </PageSuspenseFallback>
+            ),
+          },
+        ],
+      },
     ],
   },
 ]);

@@ -1,3 +1,8 @@
+.parent_subTotal {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
 .sub-total {
   border: 0.0625rem solid #0d6efd;
   padding-top: 1.875rem;
@@ -5,12 +10,12 @@
   border-radius: 0.625rem;
   padding-inline: 0.625rem;
   box-shadow: 0px 14px 14px 1px rgb(0 0 0 / 15%);
-  width: 30%;
+  width: 100%;
   margin-bottom: 10px;
 }
 
 @media (max-width: 991px) {
-  .sub-total {
+  .parent_subTotal {
     width: 100%;
   }
 }

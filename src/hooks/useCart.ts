@@ -6,20 +6,15 @@ import {
   CleanUpCartItems,
 } from "@store/Cart/CartSlice";
 import { useAppDispatch, useAppSelector } from "@store/Hooks";
+import { placeOrdersStatus } from "@store/order/orderSlice";
 
 const useCart = () => {
   const dispatch = useAppDispatch();
   const { items, productFullInfo, loading, error } = useAppSelector(
     (state) => state.Cart
   );
-
-  useEffect(() => {
-    const promise = dispatch(ActGetProductByItems());
-    return () => {
-      dispatch(CleanUpCartItems());
-      promise.abort();
-    };
-  }, [dispatch]);
+  const useAccessToken = useAppSelector((state) => state.auth.accessToken);
+  const placeOrderStatus = useAppSelector((state) => state.orders.loading);
 
   const product = productFullInfo.map((el) => ({
     ...el,
@@ -42,7 +37,24 @@ const useCart = () => {
     [dispatch]
   );
 
-  return { loading, error, product, changeQuantityHandler, removeItemsHandler };
+  useEffect(() => {
+    const promise = dispatch(ActGetProductByItems());
+    return () => {
+      promise.abort();
+      dispatch(CleanUpCartItems());
+      dispatch(placeOrdersStatus());
+    };
+  }, [dispatch]);
+
+  return {
+    loading,
+    error,
+    product,
+    changeQuantityHandler,
+    removeItemsHandler,
+    useAccessToken,
+    placeOrderStatus,
+  };
 };
 
 export default useCart;

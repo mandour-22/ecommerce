@@ -1,13 +1,14 @@
-import "./styles.modules.css";
 import { useState, useEffect, memo } from "react";
+import ProductInfo from "../ProductInfo/ProductInfo";
 import { useAppDispatch } from "@store/Hooks";
-import { Button, Spinner, Modal } from "react-bootstrap";
 import Like from "@assets/svg/like.svg?react";
 import { ActWishList } from "@store/wishlist/wishlistSlice";
 import LikeFullFill from "@assets/svg/like_fill.svg?react";
 import { TProducts } from "@types";
 import { addToCart } from "@store/Cart/CartSlice";
 import { Link } from "react-router-dom";
+import { Button, Spinner, Modal } from "react-bootstrap";
+import "./styles.modules.css";
 
 const Products = memo(
   ({
@@ -70,7 +71,7 @@ const Products = memo(
           </Modal.Footer>
         </Modal>
 
-        <div className="product w-100">
+        <ProductInfo title={title} img={img} price={price}>
           <div className="productLike" onClick={likeToggleHandler}>
             {loading ? (
               <Spinner size="sm" animation="border" variant="danger" />
@@ -80,18 +81,14 @@ const Products = memo(
               <Like />
             )}
           </div>
-          <div className="productImg">
-            <img src={img} alt="" />
-          </div>
-          <h2>{title}</h2>
-          <h3>{price.toFixed(2)} EGP</h3>
+
           <p>
             {quantityReachedToMax
               ? "You Reach to the Limit"
               : `You Can Add ${currentReminingQuantity} Items`}
           </p>
           <Button
-            className="btns"
+            className="btns w-100"
             variant="primary"
             style={{ color: "white", fontWeight: "bold" }}
             onClick={addToCartHandler}
@@ -110,7 +107,7 @@ const Products = memo(
               "Add To Cart"
             )}
           </Button>
-        </div>
+        </ProductInfo>
       </>
     );
   }
