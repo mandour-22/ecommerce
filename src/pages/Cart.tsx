@@ -25,8 +25,8 @@ const Cart = () => {
             <div className="text-center">
               <LottieHandler type="cartEmptyLogin" />
 
-              <h1>Your Amazon cart is empty</h1>
-              <p>You can log in to fill your market cart</p>
+              <h1>Your cart is empty</h1>
+              <p>You can login to fill your market cart</p>
               <Link to={"/login"}>
                 <Button variant="primary" className="fw-semibold">
                   Login

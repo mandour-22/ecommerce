@@ -28,11 +28,12 @@ const productsSlice = createSlice({
     });
     builder.addCase(ActGetProducts.fulfilled, (state, action) => {
       state.loading = "succeeded";
-      state.records = action.payload;
+      if (action.payload) {
+        state.records = action.payload;
+      }
     });
     builder.addCase(ActGetProducts.rejected, (state, action) => {
       state.loading = "failed";
-
       if (isString(action.payload)) {
         state.error = action.payload;
       }

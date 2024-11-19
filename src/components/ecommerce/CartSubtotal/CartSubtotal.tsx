@@ -1,7 +1,7 @@
 import { useAppDispatch } from "@store/Hooks";
 import { clearCartPleaceOrder } from "@store/Cart/CartSlice";
 import actPlaceOrder from "@store/order/act/actPlaceOrder";
-import { TProducts } from "@customTypes/product";
+import { TProducts } from "@types";
 import "./styles.modules.css";
 import { Button, Modal, Spinner } from "react-bootstrap";
 import { useState } from "react";

@@ -1,5 +1,34 @@
 {
-  "users": [],
+  "users": [
+    {
+      "email": "omar@gmail.com",
+      "password": "$2a$10$v22pGlb/uqqUcg3BQWCOrenKp8CplaXDdMUT3RwF8b8fYyY7CGD0S",
+      "firstName": "omar",
+      "lastName": "hassan",
+      "id": 1
+    },
+    {
+      "email": "ahmed@gmail.com",
+      "password": "$2a$10$eR0RgJ0OVv2fFfPiRIx8nureKqwBpvcVWGyiiRvbn4MePoa1jVft6",
+      "firstName": "Ahmed",
+      "lastName": "Mandoour",
+      "id": 2
+    },
+    {
+      "email": "yousef@gmail.com",
+      "password": "$2a$10$EFNnN56F5NsTxKZDx18WEOQUVKYMWz5ZM/Zp91gntf0ib8rPd6KmO",
+      "firstName": "Omar ",
+      "lastName": "Mandour",
+      "id": 3
+    },
+    {
+      "email": "123456@gmail.com",
+      "password": "$2a$10$dbS0RkBhaUJugD2MTXlR9uNRYASkdnDfvQ5ri7N5kKa2yZ0d4b67e",
+      "firstName": "12233",
+      "lastName": "23221",
+      "id": 4
+    }
+  ],
   "categories": [
     {
       "id": 1,
@@ -98,6 +127,83 @@
       "max": 2
     }
   ],
-  "wishlist": [],
-  "orders": []
+  "wishlist": [
+    {
+      "userId": 1,
+      "productId": 1,
+      "id": 1
+    }
+  ],
+  "orders": [
+    {
+      "userId": 2,
+      "items": [
+        {
+          "title": "Jersey top",
+          "price": 249,
+          "img": "https://eg.hm.com/assets/styles/HNM/14482498/6103a8463876770c30cdba3535b7be1f333315fe/2/image-thumb__3464789__product_listing/cb91f8f128ac2125e0ec3a008a2e8d2497d15434.jpg",
+          "id": 1,
+          "quantity": 1
+        },
+        {
+          "title": "Regular Fit Jersey top",
+          "price": 229,
+          "img": "https://eg.hm.com/assets/styles/HNM/14482498/6103a8463876770c30cdba3535b7be1f333315fe/2/image-thumb__3464789__product_listing/cb91f8f128ac2125e0ec3a008a2e8d2497d15434.jpg",
+          "id": 2,
+          "quantity": 1
+        },
+        {
+          "title": "Cotton polo shirt",
+          "price": 200,
+          "img": "https://eg.hm.com/assets/styles/HNM/13994073/eeb1d90c4764366000eb8b8571396e81f0de5c44/2/image-thumb__3142108__product_listing/4d6db9e8f936d3d82b13bc5861b0310fa214c74d.jpg",
+          "id": 3,
+          "quantity": 1
+        }
+      ],
+      "subTotal": 678,
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "items": [
+        {
+          "title": "Cotton t-shirt",
+          "price": 100,
+          "img": "https://eg.hm.com/assets/styles/HNM/13650519/6cc34f51caee1d6cfe776b933d667075fa30d90d/2/image-thumb__2888777__product_listing/16c27492b022ac2eef03853f85d5b279a29ebeed.jpg",
+          "id": 4,
+          "quantity": 1
+        },
+        {
+          "title": "Sweatshirt shorts",
+          "price": 300,
+          "img": "https://eg.hm.com/assets/styles/HNM/12652575/3e316aab8ce1b596545d144d0efd362975b3856f/2/image-thumb__1998684__product_listing/48756e509aa05341e4a618ba4c1b0a5ce24ebcae.jpg",
+          "id": 5,
+          "quantity": 1
+        }
+      ],
+      "subTotal": 400,
+      "id": 2
+    },
+    {
+      "userId": 1,
+      "items": [
+        {
+          "title": "Jersey top",
+          "price": 249,
+          "img": "https://eg.hm.com/assets/styles/HNM/14482498/6103a8463876770c30cdba3535b7be1f333315fe/2/image-thumb__3464789__product_listing/cb91f8f128ac2125e0ec3a008a2e8d2497d15434.jpg",
+          "id": 1,
+          "quantity": 1
+        },
+        {
+          "title": "Regular Fit Jersey top",
+          "price": 229,
+          "img": "https://eg.hm.com/assets/styles/HNM/14482498/6103a8463876770c30cdba3535b7be1f333315fe/2/image-thumb__3464789__product_listing/cb91f8f128ac2125e0ec3a008a2e8d2497d15434.jpg",
+          "id": 2,
+          "quantity": 1
+        }
+      ],
+      "subTotal": 478,
+      "id": 3
+    }
+  ]
 }

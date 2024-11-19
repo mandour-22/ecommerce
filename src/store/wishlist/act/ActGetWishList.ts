@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { TProducts } from "@customTypes/product";
+import { TProducts } from "@types";
 import { RootState } from "@store/index";
 import { AxiosError } from "@util";
 
@@ -10,7 +10,7 @@ type TResponse = TProducts[];
 const ActGetWishList = createAsyncThunk(
   "wishlist/actGetWishlist",
   async (dataType: TDataState, thunkAPI) => {
-    const { rejectWithValue, fulfillWithValue, signal, getState } = thunkAPI;
+    const { rejectWithValue, signal, getState } = thunkAPI;
 
     const { auth } = getState() as RootState;
     try {

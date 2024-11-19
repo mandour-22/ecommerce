@@ -93,7 +93,7 @@ const Register = () => {
               }>
               {loading === "pending" ? (
                 <>
-                  <Spinner animation="border" size="sm"></Spinner> Loading...
+                  <Spinner animation="border" size="sm" /> Loading...
                 </>
               ) : (
                 "Submit"

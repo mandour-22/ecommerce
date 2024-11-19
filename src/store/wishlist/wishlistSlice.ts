@@ -32,13 +32,17 @@ const wishlistSlice = createSlice({
       state.error = null;
     });
     builder.addCase(ActWishList.fulfilled, (state, action) => {
-      if (action.payload.type === "add") {
-        state.itemsId.push(action.payload.id);
-      } else {
-        state.itemsId = state.itemsId.filter((el) => el !== action.payload.id);
-        state.productFullInfo = state.productFullInfo.filter(
-          (el) => el.id !== action.payload.id
-        );
+      if (action.payload) {
+        if (action.payload.type === "add") {
+          state.itemsId.push(action.payload.id);
+        } else {
+          state.itemsId = state.itemsId.filter(
+            (el) => el !== action.payload?.id
+          );
+          state.productFullInfo = state.productFullInfo.filter(
+            (el) => el.id !== action.payload?.id
+          );
+        }
       }
     });
     builder.addCase(ActWishList.rejected, (state, action) => {
