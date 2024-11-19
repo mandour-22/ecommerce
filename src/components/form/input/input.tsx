@@ -1,6 +1,5 @@
 import { Form } from "react-bootstrap";
-import { FieldValues, UseFormRegister } from "react-hook-form";
-import { Path } from "react-router-dom";
+import { FieldValues, UseFormRegister, Path } from "react-hook-form";
 
 type inputProps<TFieldValue extends FieldValues> = {
   label: string;

@@ -28,8 +28,11 @@ const categoriesSlice = createSlice({
     });
     builder.addCase(ActGetCategories.fulfilled, (state, action) => {
       state.loading = "succeeded";
-      if (action.payload) {
+      if (Array.isArray(action.payload)) {
         state.records = action.payload;
+      } else {
+        state.error = "Invalid data received";
+        return;
       }
     });
     builder.addCase(ActGetCategories.rejected, (state, action) => {
